@@ -1,0 +1,1 @@
+export type { IFormConfig } from './IFormConfig';
