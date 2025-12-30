@@ -36,13 +36,17 @@ const formComponents = computed(() => props.config?.map((field) => {
   }
 }) || [])
 
-const onClick = () => {
+const submit = () => {
   emit('submit', (data.value));
+}
+
+const cancel = () => {
+  data.value = {};
 }
 </script>
 
 <template>
-  <q-form class="q-gutter-md">
+  <q-form class="q-gutter-md" :class="$style['form']">
     <component 
       v-for="component in formComponents"
       :key="component.id"
@@ -51,12 +55,29 @@ const onClick = () => {
       v-bind="component.props" 
     />
 
+    <div :class="$style['form__actions']">
+      <Button label="Сохранить" color="primary" @click="submit" />
+
+      <Button label="Отмена" @click="cancel" />
+    </div>
+
     <div>
-      <Button label="Сохранить" color="primary" @click="onClick" />
+      <h3>
+        Введенные данные
+      </h3>
+      {{ data }}
     </div>
   </q-form>
 </template>
 
 <style lang="scss" module>
+.form {
+  max-width: 800px;
+  width: 100%;
 
+  &__actions {
+    display: flex;
+    gap: design.$size-medium;
+  }
+}
 </style>

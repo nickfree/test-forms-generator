@@ -8,6 +8,6 @@ export class UserApi {
   }
 
   static async setUserData(data: any) {
-    console.log(data);
+    alert(JSON.stringify(data));
   }
 }

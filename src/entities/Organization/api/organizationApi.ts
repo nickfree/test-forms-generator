@@ -8,6 +8,6 @@ export class OrganizationApi {
   }
 
   static async setOrganizationData(data: any) {
-    console.log(data);
+    alert(JSON.stringify(data));
   }
 }

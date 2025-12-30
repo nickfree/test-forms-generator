@@ -23,4 +23,11 @@ export default defineConfig({
 			src: "/src"
 		},
 	},
+  css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: "@use \"src/shared/ui/design\";",
+			},
+		},
+	},
 })

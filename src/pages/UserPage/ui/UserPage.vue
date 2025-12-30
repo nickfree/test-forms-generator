@@ -21,7 +21,9 @@ init();
 </script>
 
 <template>
-  <div>
+  <div :class="$style['user-page']">
+    <h1>Форма пользователя</h1>
+
     <Form 
       v-if="formConfig" 
       :config="formConfig?.fields" 
@@ -31,5 +33,9 @@ init();
 </template>
 
 <style lang="scss" module>
-
+.user-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

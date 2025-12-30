@@ -13,7 +13,7 @@ import { Button } from 'src/shared';
 <style lang="scss" module>
 .main-menu {
   display: flex;
-  gap: 20px;
+  gap: design.$size-medium;
   justify-content: flex-end;
 }
 </style>

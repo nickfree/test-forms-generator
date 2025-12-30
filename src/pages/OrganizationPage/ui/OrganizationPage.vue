@@ -21,11 +21,21 @@ init();
 </script>
 
 <template>
-  <div>
-    <Form v-if="formConfig" :config="formConfig?.fields" @submit="setOrganizationData" />
+  <div :class="$style['organization-page']">
+    <h1>Форма организации</h1>
+
+    <Form 
+      v-if="formConfig" 
+      :config="formConfig?.fields" 
+      @submit="setOrganizationData" 
+    />
   </div>
 </template>
 
 <style lang="scss" module>
-
+.organization-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
