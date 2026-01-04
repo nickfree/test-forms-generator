@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Form } from 'src/features/Form';
+import { computed, ref } from 'vue';
 import { store } from 'src/shared';
-import { computed } from 'vue';
+import { Form } from 'src/features/Form';
+
+const data = ref({});
 
 const formConfig = computed(() => store.state.organizationModule.organizationFormConfig);
 
@@ -9,8 +11,8 @@ const getOrganizationFormConfig = async () => {
   await store.dispatch('organizationModule/getOrganizationFormConfig');
 }
 
-const setOrganizationData = async (data: any) => {
-  await store.dispatch('organizationModule/setOrganizationData', data);
+const setOrganizationData = async () => {
+  await store.dispatch('organizationModule/setOrganizationData', data.value);
 }
 
 const init = async () => {
@@ -25,7 +27,8 @@ init();
     <h1>Форма организации</h1>
 
     <Form 
-      v-if="formConfig" 
+      v-if="formConfig"
+      v-model="data"
       :config="formConfig?.fields" 
       @submit="setOrganizationData" 
     />

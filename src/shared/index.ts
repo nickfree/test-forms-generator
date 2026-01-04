@@ -4,6 +4,7 @@ export {
   Select, 
   Text,
   Checkbox,
+  Icon,
 } from "./ui";
 
 export { store } from "./model";

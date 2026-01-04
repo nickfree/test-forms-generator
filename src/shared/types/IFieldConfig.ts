@@ -3,4 +3,5 @@ export interface IFieldConfig {
   label: string;
   type: string;
   options?: string[];
+  icon?: string;
 }

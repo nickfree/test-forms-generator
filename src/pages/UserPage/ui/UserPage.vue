@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { Form } from 'src/features/Form';
+import { computed, ref } from 'vue';
 import { store } from 'src/shared';
-import { computed } from 'vue';
+import { Form } from 'src/features/Form';
+
+const data = ref({});
 
 const formConfig = computed(() => store.state.userModule.userFormConfig);
 
@@ -9,8 +11,8 @@ const getUserFormConfig = async () => {
   await store.dispatch('userModule/getUserFormConfig');
 }
 
-const setUserData = async (data: any) => {
-  await store.dispatch('userModule/setUserData', data);
+const setUserData = async () => {
+  await store.dispatch('userModule/setUserData', data.value);
 }
 
 const init = async () => {
@@ -26,8 +28,9 @@ init();
 
     <Form 
       v-if="formConfig" 
+      v-model="data"
       :config="formConfig?.fields" 
-      @submit="setUserData" 
+      @submit="setUserData"
     />
   </div>
 </template>
