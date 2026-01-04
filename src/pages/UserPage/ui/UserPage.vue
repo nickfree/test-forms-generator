@@ -1,18 +1,19 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, toRef } from 'vue';
 import { store } from 'src/shared';
 import { Form } from 'src/features/Form';
 
-const data = ref({});
+const data = toRef(store.state.userModule, 'userData');
 
 const formConfig = computed(() => store.state.userModule.userFormConfig);
 
 const getUserFormConfig = async () => {
   await store.dispatch('userModule/getUserFormConfig');
+  console.log(store.state.userModule)
 }
 
 const setUserData = async () => {
-  await store.dispatch('userModule/setUserData', data.value);
+  await store.dispatch('userModule/setUserData');
 }
 
 const init = async () => {

@@ -5,6 +5,10 @@ export const userModule = {
 
   state: () => ({
     userFormConfig: null,
+    userData: {
+      name: 'Никита',
+      admin: true
+    }
   }),
 
   mutations: {
@@ -22,8 +26,8 @@ export const userModule = {
       state.commit('setUserFormConfig', (await UserApi.getFormConfig()));
     },
 
-    async setUserData(state: any, data: any) {
-      await UserApi.setUserData(data);
+    async setUserData(store: any) {
+      await UserApi.setUserData(store.state.userData);
     }
   }
 }

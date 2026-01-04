@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, toRef } from 'vue';
 import { store } from 'src/shared';
 import { Form } from 'src/features/Form';
 
-const data = ref({});
+const data = toRef(store.state.organizationModule, 'organizationData');
 
 const formConfig = computed(() => store.state.organizationModule.organizationFormConfig);
 
@@ -12,7 +12,7 @@ const getOrganizationFormConfig = async () => {
 }
 
 const setOrganizationData = async () => {
-  await store.dispatch('organizationModule/setOrganizationData', data.value);
+  await store.dispatch('organizationModule/setOrganizationData');
 }
 
 const init = async () => {

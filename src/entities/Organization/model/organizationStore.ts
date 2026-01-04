@@ -5,6 +5,10 @@ export const organizationModule = {
 
   state: () => ({
     organizationFormConfig: null,
+    organizationData: {
+      name: 'Моя организация',
+      comment: 'Отличная организация. \nХороший выбор!',
+    }
   }),
 
   mutations: {
@@ -22,8 +26,8 @@ export const organizationModule = {
       state.commit('setOrganizationFormConfig', (await OrganizationApi.getFormConfig()));
     },
 
-    async setOrganizationData(state: any, data: any) {
-      await OrganizationApi.setOrganizationData(data);
+    async setOrganizationData(store: any) {
+      await OrganizationApi.setOrganizationData(store.state.organizationData);
     }
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onUnmounted } from 'vue';
 import { 
   Input, 
   Button, 
@@ -19,6 +19,8 @@ const emit = defineEmits(['submit']);
 const data = defineModel({
   default: {}
 });
+
+let initialData = { ...data.value };
 
 const components = {
   string: Input,
@@ -41,11 +43,17 @@ const formComponents = computed(() => props.config?.map((field) => {
 
 const submit = () => {
   emit('submit', (data.value));
+
+  initialData = { ...data.value };
 }
 
 const cancel = () => {
-  data.value = {};
+  data.value = { ...initialData };
 }
+
+onUnmounted(() => {
+  cancel();
+})
 </script>
 
 <template>
