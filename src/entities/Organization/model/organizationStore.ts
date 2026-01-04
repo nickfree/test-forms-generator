@@ -1,9 +1,11 @@
+import { type IFormConfig } from 'src/shared';
+import type { IOrganizationStoreState } from '../types';
 import { OrganizationApi } from '../api/organizationApi';
 
 export const organizationModule = {
   namespaced: true,
 
-  state: () => ({
+  state: (): IOrganizationStoreState => ({
     organizationFormConfig: null,
     organizationData: {
       name: 'Моя организация',
@@ -12,22 +14,22 @@ export const organizationModule = {
   }),
 
   mutations: {
-    setOrganizationFormConfig(state: any, organizationFormConfig: any) {
+    setOrganizationFormConfig(state: IOrganizationStoreState, organizationFormConfig: IFormConfig) {
       state.organizationFormConfig = organizationFormConfig;
     }
   },
 
   actions: {
-    async getOrganizationFormConfig(state: any) {
+    async getOrganizationFormConfig({ state, commit }) {
       if (state.organizationFormConfig) {
         return;
       }
 
-      state.commit('setOrganizationFormConfig', (await OrganizationApi.getFormConfig()));
+      commit('setOrganizationFormConfig', (await OrganizationApi.getFormConfig()));
     },
 
-    async setOrganizationData(store: any) {
-      await OrganizationApi.setOrganizationData(store.state.organizationData);
+    async setOrganizationData({ state }) {
+      await OrganizationApi.setOrganizationData(state.organizationData);
     }
   }
 }

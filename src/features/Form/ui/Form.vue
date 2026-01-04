@@ -11,7 +11,7 @@ import {
 } from 'src/shared';
 
 interface Props {
-  config: IFieldConfig[]
+  fields: IFieldConfig[]
 }
 
 const props = defineProps<Props>();
@@ -29,7 +29,7 @@ const components = {
   checkbox: Checkbox,
 }
 
-const formComponents = computed(() => props.config?.map((field) => {
+const formComponents = computed(() => props.fields?.map((field) => {
   return {
     id: field.id,
     component: components[field.type as keyof typeof components],

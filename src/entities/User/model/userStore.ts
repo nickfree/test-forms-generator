@@ -1,9 +1,11 @@
+import { type IFormConfig } from 'src/shared';
 import { UserApi } from '../api/userApi';
+import type { IUserStoreState } from '../types';
 
 export const userModule = {
   namespaced: true,
 
-  state: () => ({
+  state: (): IUserStoreState => ({
     userFormConfig: null,
     userData: {
       name: 'Никита',
@@ -12,22 +14,22 @@ export const userModule = {
   }),
 
   mutations: {
-    setUserFormConfig(state: any, userFormConfig: any) {
+    setUserFormConfig(state: IUserStoreState, userFormConfig: IFormConfig) {
       state.userFormConfig = userFormConfig;
     }
   },
 
   actions: {
-    async getUserFormConfig(state: any) {
+    async getUserFormConfig({ state, commit }) {
       if (state.userFormConfig) {
         return;
       }
 
-      state.commit('setUserFormConfig', (await UserApi.getFormConfig()));
+      commit('setUserFormConfig', (await UserApi.getFormConfig()));
     },
 
-    async setUserData(store: any) {
-      await UserApi.setUserData(store.state.userData);
+    async setUserData({ state }) {
+      await UserApi.setUserData(state.userData);
     }
   }
 }

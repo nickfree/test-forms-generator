@@ -30,7 +30,7 @@ init();
     <Form 
       v-if="formConfig" 
       v-model="data"
-      :config="formConfig?.fields" 
+      :fields="formConfig?.fields" 
       @submit="setUserData"
     />
   </div>
