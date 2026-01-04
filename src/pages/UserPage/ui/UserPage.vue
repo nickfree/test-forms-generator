@@ -9,7 +9,6 @@ const formConfig = computed(() => store.state.userModule.userFormConfig);
 
 const getUserFormConfig = async () => {
   await store.dispatch('userModule/getUserFormConfig');
-  console.log(store.state.userModule)
 }
 
 const setUserData = async () => {
